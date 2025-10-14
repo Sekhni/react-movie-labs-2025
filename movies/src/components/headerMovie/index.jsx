@@ -9,7 +9,8 @@ import { useNavigate } from "react-router";
 
 const MovieHeader = (props) => {
   const movie = props.movie;
-  const navigate = useNavigate();
+    const navigate = useNavigate();
+
 
   return (
     <Paper 
@@ -22,9 +23,10 @@ const MovieHeader = (props) => {
             margin: 0,
         }}
       >
-      <IconButton aria-label="go back" onClick={() => navigate(-1)} >
+            <IconButton aria-label="go back" onClick={() => navigate(-1)}>
         <ArrowBackIcon color="primary" fontSize="large" />
       </IconButton>
+
 
       <Typography variant="h4" component="h3">
         {movie.title}
@@ -34,8 +36,7 @@ const MovieHeader = (props) => {
         <br />
         <span sx={{ fontSize: "1.5rem" }}>{`   "${movie.tagline}"`} </span>
       </Typography>
-
-      <IconButton aria-label="go forward" onClick={() => navigate(+1) } >
+            <IconButton aria-label="go forward" onClick={() => navigate(+1)}>
         <ArrowForwardIcon color="primary" fontSize="large" />
       </IconButton>
     </Paper>
