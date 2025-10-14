@@ -1,4 +1,3 @@
-
 import MovieHeader from "../components/headerMovie/";
 import MovieDetails from "../components/movieDetails/";
 import Grid from "@mui/material/Grid";
@@ -6,6 +5,7 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import React, {useState, useEffect}  from "react";
 import { useParams } from 'react-router';
+import { getMovie, getMovieImages } from "../api/tmdb-api";
 
 const MoviePage = (props) => {
     const { id } = useParams();
@@ -36,6 +36,18 @@ const MoviePage = (props) => {
         setImages(images);
       });
       // eslint-disable-next-line
+  }, []);
+  useEffect(() => {
+    getMovie(id).then((movie) => {
+      setMovie(movie);
+    });
+  }, [id]);
+
+  useEffect(() => {
+    getMovieImages(id).then((images) => {
+      setImages(images);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 
