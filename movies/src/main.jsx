@@ -10,16 +10,18 @@ import SiteHeader from './components/siteHeader'
 const App = () => {
   return (
     <BrowserRouter>
+      <SiteHeader />   {/* 👈 This actually renders your header */}
       <Routes>
         <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
         <Route path="/movies/:id" element={<MoviePage />} />
         <Route path="/" element={<HomePage />} />
-        <Route path="/reviews/:id" element={ <MovieReviewPage /> } />
-        <Route path="*" element={ <Navigate to="/" /> } />
+        <Route path="/reviews/:id" element={<MovieReviewPage />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
   );
 };
+
 
 const rootElement = createRoot( document.getElementById("root") )
 rootElement.render(<App />);
