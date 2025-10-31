@@ -11,6 +11,7 @@ import React, { useState } from "react";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews"
 
+
 const root = {
     display: "flex",
     justifyContent: "center",
