@@ -33,57 +33,75 @@ export default function MovieCard({ movie, action }) {
 
 
   return (
-    <Card>
-       <CardHeader
-        avatar={
-          movie.favorite ? (
-            <Avatar sx={{ backgroundColor: 'red' }}>
-              <FavoriteIcon />
-            </Avatar>
-          ) : null
-        }
-        title={
-          <Typography variant="h5" component="p">
-            {movie.title}{" "}
-          </Typography>
-        }
-      />
+  <Card sx={{ 
+    backgroundColor: "rgba(161, 64, 187, 1)",
+    color: "white",
+    fontSize: 20
+  }}>
+    <CardHeader
+      avatar={
+        movie.favorite ? (
+          <Avatar sx={{ backgroundColor: 'red' }}>
+            <FavoriteIcon sx={{ fontSize: 20 }} />
+          </Avatar>
+        ) : null
+      }
+      title={
+        <Typography variant="h5" component="p" sx={{ color: "white", fontSize: 20 }}>
+          {movie.title}{" "}
+        </Typography>
+      }
+    />
 
-      <CardMedia
-        sx={{ height: 500 }}
-        image={
-          movie.poster_path
-            ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-            : img
-        }
-      />
+    <CardMedia
+      sx={{ 
+        height: 500, 
+        
+      }}
+      image={
+        movie.poster_path
+          ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+          : img
+      }
+    />
       <CardContent>
         <Grid container>
-          <Grid size={{xs: 6}}>
-            <Typography variant="h6" component="p">
-              <CalendarIcon fontSize="small" />
+          <Grid size={{xs: 5}}>
+            <Typography variant="h6" component="p" sx={{ color: "white", fontSize: 15 }}>
+              <CalendarIcon sx={{ fontSize: 15 }} />
               {movie.release_date}
             </Typography>
           </Grid>
           <Grid size={{xs: 6}}>
-            <Typography variant="h6" component="p">
-              <StarRateIcon fontSize="small" />
+            <Typography variant="h6" component="p" sx={{ color: "white", fontSize: 15 }}>
+              <StarRateIcon sx={{ fontSize: 15 }} />
               {"  "} {movie.vote_average}{" "}
             </Typography>
           </Grid>
         </Grid>
       </CardContent>
-         <CardActions disableSpacing>
-      
-        {action(movie)}
-      
-        <Link to={`/movies/${movie.id}`}>
-          <Button variant="outlined" size="medium" color="primary">
-            More Info ...
-          </Button>
-        </Link>
-        
-      </CardActions>
+     <CardActions disableSpacing>
+  
+  {action(movie)}
+
+  <Link to={`/movies/${movie.id}`} style={{ marginLeft: "auto" }}>
+    <Button 
+      variant="outlined" 
+      size="small" 
+      sx={{ 
+        color: "white",
+        borderColor: "white",
+        fontSize: 15,
+        '&:hover': {
+          borderColor: "white"
+        }
+      }}
+    >
+      More Info
+    </Button>
+  </Link>
+  
+</CardActions>
 
     </Card>
   );

@@ -5,16 +5,16 @@ import HomePage from "./pages/homePage";
 import MoviePage from "./pages/movieDetailsPage";
 import FavoriteMoviesPage from "./pages/favoriteMoviesPage";
 import MovieReviewPage from "./pages/movieReviewPage";
-import SiteHeader from './components/siteHeader'
+import SiteHeader from './components/siteHeader';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import MoviesContextProvider from "./contexts/moviesContext";
-import AddMovieReviewPage from './pages/addMovieReviewPage'
+import AddMovieReviewPage from './pages/addMovieReviewPage';
 import TopRatedPage from "./pages/topRatedPage";
 import NowPlayingPage from "./pages/nowPlayingPage";
-import trending from "./pages/trendingPage";
 import TrendingPage from "./pages/trendingPage";
-
+import UpComingPage from "./pages/upComingPage";
+import WatchListMoviesPage from "./pages/watchListMoviesPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,15 +34,16 @@ const App = () => {
         <MoviesContextProvider>
           <Routes>
             <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
-            <Route path="/reviews/:id" element={ <MovieReviewPage /> } />
+            <Route path="/reviews/:id" element={<MovieReviewPage />} />
             <Route path="/movies/:id" element={<MoviePage />} />
             <Route path="/" element={<HomePage />} />
-            <Route path="*" element={ <Navigate to="/" /> } />
-            <Route path="/reviews/form" element={ <AddMovieReviewPage /> } />
+            <Route path="*" element={<Navigate to="/" />} />
+            <Route path="/reviews/form" element={<AddMovieReviewPage />} />
             <Route path="/movies/topRated" element={<TopRatedPage />} />
             <Route path="/movies/nowPlaying" element={<NowPlayingPage />} />
             <Route path="/movies/trending" element={<TrendingPage />} />
-            
+            <Route path="/movies/upcoming" element={<UpComingPage />} />
+            <Route path="/movies/watchList" element={<WatchListMoviesPage />} />
           </Routes>
         </MoviesContextProvider>
       </BrowserRouter>
@@ -51,8 +52,5 @@ const App = () => {
   );
 };
 
-
-
-
-const rootElement = createRoot( document.getElementById("root") )
+const rootElement = createRoot(document.getElementById("root"));
 rootElement.render(<App />);

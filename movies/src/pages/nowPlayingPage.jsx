@@ -1,24 +1,36 @@
-import React, { useState, useEffect } from "react";
 import PageTemplate from "../components/templateMovieListPage";
 import { getNowPlayingMovies } from "../api/tmdb-api";
+import { useQuery } from "@tanstack/react-query";
+import Spinner from "../components/spinner";
+import AddToFavoritesIcon from '../components/cardIcons/addToFavorites';
+import AddToWatchListIcon from '../components/cardIcons/addToWatchList';
 
 const NowPlayingPage = () => {
-  const [movies, setMovies] = useState([]);
+  const { data, error, isPending, isError } = useQuery({
+    queryKey: ["nowPlayingMovies"],
+    queryFn: getNowPlayingMovies,
+  });
 
-  useEffect(() => {
-    getNowPlayingMovies().then((movies) => {
-      setMovies(movies);
-    });
-  }, []);
+  if (isPending) {
+    return <Spinner />;
+  }
+
+  if (isError) {
+    return <h1>{error.message}</h1>;
+  }
+
+  const movies = data;
 
   return (
     <PageTemplate
       title="Now Playing"
       movies={movies}
-      action={(movie) => {
-        // Placeholder for any icons or buttons
-        return null;
-      }}
+      action={(movie) => (
+        <>
+          <AddToFavoritesIcon movie={movie} />
+          <AddToWatchListIcon movie={movie} />
+        </>
+      )}
     />
   );
 };
